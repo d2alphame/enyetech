@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 class Profile extends Component {
 	state = {  }
 	render() { 
-		return (<h1>Hello World</h1>);
+		return (
+			<React.Fragment>
+				<h1>Hello World</h1>
+			</React.Fragment>
+		);
 	}
 }
  
