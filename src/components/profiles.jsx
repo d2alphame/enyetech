@@ -42,22 +42,37 @@ class Profiles extends Component {
 		else if(!loaded) {
 			return ( <div>Loading...</div> )
 		}
+
+		let displayProfiles = this.gotoPage(1, 20)
 		return ( 
-			<div class="accordion" id="profiles">
-			  <div class="accordion-item">
-			    <h2 class="accordion-header" id="headingOne">
-			      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			        Accordion Item #1
-			      </button>
-			    </h2>
-			    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#profiles">
-			      <div class="accordion-body">
-			        <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-			      </div>
-			    </div>
-			  </div>
+			<div>
+				{ displayProfiles.map(profile => 
+					<div className="card" key={profile.Email}>
+						<div className="card-body">
+							<div>
+								<h5 className="card-title">{profile.FirstName + " " + profile.LastName}</h5>
+								<h6 class="card-subtitle mb-2 text-muted">{profile.Email}</h6>
+							</div>
+						</div>
+					</div>
+				)}
 			</div>
 		);
+	}
+
+	// Returns an array which contains only the profiles for the given page
+	gotoPage = (n, pageLimit) => {
+		const startIndex = pageLimit * (n - 1)
+		const lastIndex = startIndex + pageLimit
+		return this.state.profiles.slice(startIndex, lastIndex)
+	}
+
+	gotoNextPage() {
+
+	}
+
+	gotoPrevPage() {
+
 	}
 }
  
