@@ -35,7 +35,7 @@ class Profiles extends Component {
 	}
 
 	render() { 
-		const { error, loaded, profiles } = this.state
+		const { error, loaded} = this.state
 		if(error) {
 			return ( <div>Error: { error.message } </div> )
 		}
@@ -47,13 +47,19 @@ class Profiles extends Component {
 		return ( 
 			<div>
 				{ displayProfiles.map(profile => 
-					<div className="card" key={profile.Email}>
-						<div className="card-body">
-							<div>
-								<h5 className="card-title">{profile.FirstName + " " + profile.LastName}</h5>
-								<h6 class="card-subtitle mb-2 text-muted">{profile.Email}</h6>
-							</div>
+					<div className="card my-5" key={profile.Email}>
+						<div className="card-header">
+							{profile.FirstName + " " + profile.LastName}
 						</div>
+						<div className="card-body">
+							<h5 className="card-title">{profile.UserName}</h5>
+							<p className="font-italic">{profile.Email}</p>
+							<a href={profile.URL} target="_blank" rel="noopener noreferrer" className="card-link" >{profile.URL}</a>
+						</div>
+						<div className="card-footer text-muted">
+    						Last logged in on {profile.LastLogin} <br />
+							From {profile.Longitude}, {profile.Latitude}
+  						</div>
 					</div>
 				)}
 			</div>
