@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PagedNav from './pagedNav'
+import Search from './search'
 
 class Profiles extends Component {
 
@@ -56,7 +57,9 @@ class Profiles extends Component {
 					prevPageHandler={this.gotoPrevPage} 
 					firstPageHandler={this.gotoFirstPage}
 					lastPageHandler={this.gotoLastPage} />
-					
+
+				<Search searchableProfiles={profiles}/>
+
 				{ displayProfiles.map(profile => 
 					<div className="card my-5" key={profile.Email}>
 						<div className="card-header">
@@ -134,6 +137,7 @@ class Profiles extends Component {
 		let {totalPages} = this.state
 		this.setState({currentPage: totalPages})
 	}
+
 }
  
 export default Profiles;
