@@ -49,7 +49,14 @@ class Profiles extends Component {
 		let displayProfiles = this.gotoPage(currentPage, pageLimit, profiles)
 		return ( 
 			<div>
-				<PagedNav currPage={currentPage} totPages={this.state.totalPages} nextPageHandler={this.gotoNextPage} prevPageHandler={this.gotoPrevPage} />
+				<PagedNav 
+					currPage={currentPage} 
+					totPages={this.state.totalPages} 
+					nextPageHandler={this.gotoNextPage} 
+					prevPageHandler={this.gotoPrevPage} 
+					firstPageHandler={this.gotoFirstPage}
+					lastPageHandler={this.gotoLastPage} />
+					
 				{ displayProfiles.map(profile => 
 					<div className="card my-5" key={profile.Email}>
 						<div className="card-header">
@@ -115,6 +122,17 @@ class Profiles extends Component {
 			currentPage--
 			this.setState({currentPage: currentPage})
 		}
+	}
+
+
+	gotoFirstPage = () => {
+		this.setState({currentPage: 1})
+	}
+
+
+	gotoLastPage = () => {
+		let {totalPages} = this.state
+		this.setState({currentPage: totalPages})
 	}
 }
  
